@@ -43,7 +43,8 @@ class Project(object):
         ctrl = {}
         cls = []
         with open('control') as control:
-            for line in control:
+            last_line = ''
+            for line in control.readlines():
                 lc+=1
                 cls.append(line)
                 if ':' in line:
@@ -54,6 +55,9 @@ class Project(object):
                         dbwarn(f'control:{lc}', f'Duplicate control key "{kv[0]}"')
                     else:
                         ctrl[kv[0]] = kv[1].strip("\n")
+                last_line = line
+            if last_line.endswith('\n'):
+                cls.append('\n')
         return (ctrl, cls)
 
     def load_makefile(self):

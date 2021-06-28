@@ -98,13 +98,14 @@ class Checker(object):
 
 project_checker = Checker(Project())
 project_checker.check()
-
+exitflag = 0
 for problem in project_checker.problems:
     if problem.sev == Severity.STATE:
         dbstate(problem.name + ":" + problem.line, problem.msg)
     elif problem.sev == Severity.WARN:
         dbwarn(problem.name + ":" + problem.line, problem.msg)
     else:
+        exitflag=1
         dberror(problem.name + ":" + problem.line, problem.msg)
-
+exit(exitflag)
 #print(project_checker.project.projectdict)

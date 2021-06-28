@@ -14,9 +14,9 @@ def dprintline(col: int, tool: str, textcol: int, bold: int, pusher: int, loc: s
     print("%s[%s]%s %s%s%s" % (
         colors[1][col], tool, colors[bold][textcol], loc + " >>> " if pusher else "", msg, colors[0][6]), file=sys.stdout)
 
-dbstate = lambda loc, msg: dprintline(1, "tl", 5, 1, 1, loc, msg)
-dbwarn = lambda loc, msg: dprintline(2, "tl", 5, 0, 1, loc, msg)
-dberror = lambda loc, msg: dprintline(0, "tl", 5, 1, 1, loc, msg)
+dbstate = lambda loc, msg: dprintline(1, "theos-lint", 5, 1, 1, loc, msg)
+dbwarn = lambda loc, msg: dprintline(2, "theos-lint", 5, 0, 1, loc, msg)
+dberror = lambda loc, msg: dprintline(0, "theos-lint", 5, 1, 1, loc, msg)
 
 class Severity(Enum):
     STATE = 0,
